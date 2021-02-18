@@ -1,6 +1,7 @@
 import React from 'react'
 import PageController from '../PageController'
 import { Card, Button } from 'react-bootstrap';
+import axios from 'axios'
 
 export default class SearchComponent extends React.Component {
   constructor(props) {
@@ -22,7 +23,6 @@ export default class SearchComponent extends React.Component {
 //     window.location.href = ''
 //   }
 
-
   componentDidMount() {  //lifecycle method...
         PageController.getAPI(this.state.searchQuery).then( (response) => {
             this.setState({plant: response.data})
@@ -35,8 +35,20 @@ export default class SearchComponent extends React.Component {
 
         if(plant.image_url === null) plant.image_url ="https://www.gardeningknowhow.com/wp-content/uploads/2013/12/leaf-curl.jpg"
 
+             const params =  {
+                                  "id": plant.id,
+                                  "common_name": plant.common_name,
+                                  "scientific_name": plant.scientific_name,
+                                  "family_common_name": plant.family_common_name,
+                                  "genus_id": plant.genus_id,
+                                  "image_url": plant.image_url,
+                                  "genus": plant.genus,
+                                  "family": plant.family
+                              }
+                              
+
             return <div style={{textAlign: 'center', margin: '10px'}}>
-                    <Card key={plant.id} style={{border: '1px solid black', width: '25rem', padding: '20px', margin: '0 auto'}}>
+                    <Card key={plant.common_name} style={{border: '1px solid black', width: '25rem', padding: '20px', margin: '0 auto'}}>
                     <Card.Img variant="top" src={plant.image_url} style={{ margin: '0 auto', width: '250px' }}/>
                     <Card.Body>
                         <Card.Title style={{ fontWeight: 'bold' }}>{plant.common_name}</Card.Title>
@@ -44,7 +56,10 @@ export default class SearchComponent extends React.Component {
                         <p>{plant.scientific_name}</p>
                         <p>{plant.family_common_name}</p>
                         </Card.Text>
-                        <Button variant="primary">Select</Button>
+                        <form action={'http://localhost:8090/plant'}
+                            method="post">
+                           <Button type="submit" name="select" value={params} variant="primary">Select</Button>
+                       </form>
                     </Card.Body>
                     </Card>
                     </div>
@@ -54,11 +69,16 @@ export default class SearchComponent extends React.Component {
       <div>
         <input type="text" value={this.state.searchQuery} onChange={this.handleInputChanged.bind(this)} style={{ margin: '10px' }}/>
         {/* <button onClick={this.handleButtonClicked.bind(this)}> */}
-        <button>
+        <Button style={{ }} >
           Search
-        </button>
+        </Button>
        {plantCard}
       </div>
     );
   }
 }
+
+//http://localhost:8090/search/type/ + common_name
+//axios.post(("http://localhost:8090/search/type/" + plant.common_name), params)
+                              // .then(res => console.log(res))
+                              // .catch(err =>console.log(err))
