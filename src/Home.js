@@ -5,11 +5,9 @@ import SearchComponent from "./components/SearchComponent";
 class Home extends Component {
   render() {
     return (
-      <div>
-        <h2>Search For Your Favorite Plants</h2>
-        <p>Cras facilisis urna ornare ex volutpat, et
-        convallis erat elementum. Ut aliquam, ipsum vitae
-        gravida suscipit, metus dui bibendum est, eget rhoncus nibh.
+      <div style={{textAlign: 'center' ,margin: '0 auto'}}>
+        <h2 style={{margin: '0 auto'}}>Search For Your Favorite Plants</h2>
+        <p style={{margin: '0 auto'}}>Search for your plant to add it to your shlf!
         </p>
  
         <SearchComponent />

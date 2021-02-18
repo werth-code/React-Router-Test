@@ -35,9 +35,9 @@ export default class SearchComponent extends React.Component {
 
         if(plant.image_url === null) plant.image_url ="https://www.gardeningknowhow.com/wp-content/uploads/2013/12/leaf-curl.jpg"
 
-            return <div style={{margin: '10px'}}>
+            return <div style={{textAlign: 'center', margin: '10px'}}>
                     <Card key={plant.id} style={{border: '1px solid black', width: '25rem', padding: '20px', margin: '0 auto'}}>
-                    <Card.Img variant="top" src={plant.image_url} style={{ width: '250px' }}/>
+                    <Card.Img variant="top" src={plant.image_url} style={{ margin: '0 auto', width: '250px' }}/>
                     <Card.Body>
                         <Card.Title style={{ fontWeight: 'bold' }}>{plant.common_name}</Card.Title>
                         <Card.Text>
