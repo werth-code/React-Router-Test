@@ -1,6 +1,6 @@
-import {useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import { Card, Button } from 'react-bootstrap';
-import { useParams, Route, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 export default function PlantShlf() {
