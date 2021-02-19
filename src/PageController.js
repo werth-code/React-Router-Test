@@ -1,11 +1,15 @@
 import axios from 'axios'
 
-const getUrl = "http://localhost:8090/search/"
-const postUrl = "http://localhost:8090/search/type/"
+const getUrl = "http://localhost:8091/search/"
+const postUrl = "http://localhost:8091/search/type/"
 class PageController {
    
     getAPI(string) {
         return axios.get(getUrl + string)
+    }
+
+    getSingleAPI(string) {
+        return axios.get(postUrl + string)
     }
 
     postAPI(string, params) {

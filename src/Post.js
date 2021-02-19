@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 
-function Contact() {
+function Post() {
 
   const [readMore,setReadMore]=useState(false);
 
@@ -16,10 +16,10 @@ function Contact() {
   
   return (
     <div className="App">
-      <a  className="read-more-link" onClick={()=>{setReadMore(!readMore)}}><h5>{linkName}</h5></a>
+      <a className="read-more-link" onClick={()=>{setReadMore(!readMore)}}><h2>{linkName}</h2></a>
       {readMore && extraContent}
     </div>
   );
 }
 
-export default Contact;
+export default Post;

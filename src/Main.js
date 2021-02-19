@@ -10,6 +10,8 @@ import {
 import Home from "./Home";
 import Stuff from "./Stuff";
 import Contact from "./Contact";
+import PlantDetail from './components/PlantDetail'
+//import Post from "./Post"
  
 
 export default class Main extends Component {
@@ -29,6 +31,7 @@ export default class Main extends Component {
              <Route exact path="/" component={Home}/> 
             <Route path="/stuff" component={Stuff}/>
             <Route path="/contact" component={Contact}/>
+             <Route path="/plants/:commonName" component={PlantDetail}/>
           </div>
         </div>
         <footer> 
