@@ -11,7 +11,11 @@ import Home from "./Home";
 import Stuff from "./Stuff";
 import Contact from "./Contact";
 import PlantDetail from './components/PlantDetail'
-//import Post from "./Post"
+import PlantShlf from './PlantShlf'
+
+// TO ADD A ROUTE //
+// Create a component. Import that component above. Define a Route with a path = /something/:instance and component = { ComponentName }
+// This component essentially wraps all of our content.
  
 
 export default class Main extends Component {
@@ -28,17 +32,18 @@ export default class Main extends Component {
             <li><NavLink to="/contact">Profile</NavLink></li>
           </ul>
           <div className="content">
-             <Route exact path="/" component={Home}/> 
-            <Route path="/stuff" component={Stuff}/>
-            <Route path="/contact" component={Contact}/>
+             <Route exact path="/" component={Home}/>
+             <Route path="/stuff" component={Stuff}/>
+             <Route path="/contact" component={Contact}/>
              <Route path="/plants/:commonName" component={PlantDetail}/>
+             <Route path="/users/:id/:plant" component={PlantShlf}/>
           </div>
         </div>
         <footer> 
             <ul className="footer">
-            <li><NavLink exact to="/">PlantShelf</NavLink></li>
-            <li><NavLink to="/stuff">MyShlf</NavLink></li>
-            <li><NavLink to="/contact">Profile</NavLink></li>
+             <li><NavLink exact to="/">PlantShelf</NavLink></li>
+             <li><NavLink to="/stuff">MyShlf</NavLink></li>
+             <li><NavLink to="/contact">Profile</NavLink></li>
             </ul>
         </footer>
       </HashRouter>
