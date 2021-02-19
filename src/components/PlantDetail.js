@@ -1,7 +1,7 @@
 import {useEffect, useState} from 'react'
 import { Card, Button } from 'react-bootstrap';
-import { useParams, Route, Link,
-} from "react-router-dom";
+import { useParams, Route, Link} from "react-router-dom";
+import axios from 'axios'
 
 
 const PlantDetail = () => {
@@ -19,6 +19,26 @@ const PlantDetail = () => {
     //essentially, useEffect is called upon loading the page and then once every time a variable in it's [] changes. Here we have it fetch our backend api service
     //and assign the result through useState to plantData.
 
+    //axios.post('http://localhost:8091/plant', plantData).then(response => console.log(response)).catch(error => console.log(error))
+
+
+    function apiCall(method, url, data) {
+        return new Promise((resolve, reject) =>
+        axios({
+            method,
+            url,
+            params: { origin: "*" },
+            data
+        }).then(res => { resolve(res.data)  })
+          .catch((err) => {
+            if (err.response) reject(err.response.data);
+            else if (err.request) reject(err);
+            else reject(err)
+      })
+  )
+}
+
+
 
     return (
             <div style={{textAlign: 'center', margin: '10px'}}>
@@ -32,11 +52,10 @@ const PlantDetail = () => {
                     <p>{plantData.family_common_name}</p>
                     </Card.Text>
                      
-                    <form action="users/id/a" method="post" onSubmit={console.log("Submitted Form")}>
-                        <Button type="submit" name="select" variant="success">Add To Shlf</Button>
+                    <form action="http://localhost:3000/#/users/id/:plant" onSubmit={console.log("Submitted Form")}>
+                        <Button onClick={apiCall('POST', 'http://localhost:8091/plant', plantData)} type="submit" name="select" variant="success">Add To Shlf</Button>
                     </form>
 
-                    
                 </Card.Body>
                 </Card> 
             </div>
