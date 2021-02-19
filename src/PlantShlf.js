@@ -14,6 +14,7 @@ export default function PlantShlf() {
        fetch(`${getUrl}`).then(res => res.json()).then(setPlantData) // now we can actually set the state and access the variable since we have a function.
     }, [plant])
 
+    console.log(plantData)
     
     const plantCard = plantData.map(plant => {
 
@@ -28,17 +29,21 @@ export default function PlantShlf() {
                                 <p>{plant.scientific_name}</p>
                                 <p>{plant.family_common_name}</p>
                                 </Card.Text>
-                                <Link to={`plants/${plant.common_name}`}> 
-                                <form method="get" action=""> 
-                                <Button style={{margin: '10px'}} type="submit" name="select" variant="success">Update Plant</Button>
-                                <Button style={{margin: '10px'}} type="submit" name="select" variant="warning">Delete Plant</Button>
-                            </form>
-                            </Link>
+                                <Link to={`plants/${plant.common_name}`}>
+                                    <Button style={{margin: '10px'}} type="submit" name="update" variant="warning">Update Plant</Button>
+                                </Link>
+                                <Link to={`/users/${123}/delete/${plant.id}/`}>
+                                    <form method="get" action="">  
+                                        <Button style={{margin: '10px'}} type="submit" name="del" variant="danger">Delete Plant</Button>
+                                    </form>
+                                </Link>
                             </Card.Body>
                         </Card> 
                     </div>
                 
     });
+
+
 
 
     return (
@@ -47,33 +52,3 @@ export default function PlantShlf() {
         </div>
     )
 }
-
-
-
-
-//     //essentially, useEffect is called upon loading the page and then once every time a variable in it's [] changes. Here we have it fetch our backend api service
-//     //and assign the result through useState to plantData.
-
-
-//     return (
-//             <div style={{textAlign: 'center', margin: '10px'}}>
-//                 <Card style={{border: '1px solid black', width: '25rem', padding: '10px', margin: '0 auto'}}>
-//                     <h1>{plantData.common_name}</h1>
-//                 <Card.Img variant="top" src={plantData.image_url} style={{ margin: '0 auto', width: '250px' }}/>
-//                 <Card.Body>
-//                     <Card.Title style={{ fontWeight: 'bold' }}>{plantData.common_name}</Card.Title>
-//                     <Card.Text>
-//                     <p>{plantData.scientific_name}</p>
-//                     <p>{plantData.family_common_name}</p>
-//                     </Card.Text>
-//                     <Link to={`plants/${plantData.common_name}`}> 
-//                     <form method="get" action=""> 
-//                         <Button type="submit" name="select" variant="success"><Route path={plantData.common_name}/>Add To Shlf</Button>
-//                     </form>
-//                     </Link>
-//                 </Card.Body>
-//                 </Card> 
-//             </div>
-//     )
-// }
-// export default PlantDetail;

@@ -19,9 +19,6 @@ const PlantDetail = () => {
     //essentially, useEffect is called upon loading the page and then once every time a variable in it's [] changes. Here we have it fetch our backend api service
     //and assign the result through useState to plantData.
 
-    //axios.post('http://localhost:8091/plant', plantData).then(response => console.log(response)).catch(error => console.log(error))
-
-
     function apiCall(method, url, data) {
         return new Promise((resolve, reject) =>
         axios({
@@ -39,7 +36,6 @@ const PlantDetail = () => {
 }
 
 
-
     return (
             <div style={{textAlign: 'center', margin: '10px'}}>
                 <Card style={{border: '1px solid black', width: '25rem', padding: '10px', margin: '0 auto'}}>
@@ -53,7 +49,7 @@ const PlantDetail = () => {
                     </Card.Text>
                      
                     <form action="http://localhost:3000/#/users/id/:plant" onSubmit={console.log("Submitted Form")}>
-                        <Button onClick={apiCall('POST', 'http://localhost:8091/plant', plantData)} type="submit" name="select" variant="success">Add To Shlf</Button>
+                        <Button onClick={apiCall('POST', 'http://localhost:8091/plant', plantData)} type="submit" variant="success">Add To Shlf</Button>
                     </form>
 
                 </Card.Body>
