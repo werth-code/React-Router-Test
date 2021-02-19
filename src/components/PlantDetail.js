@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import { Card, Button } from 'react-bootstrap';
-import { useParams, Route, Link } from "react-router-dom";
+import { useParams, Route, Link,
+} from "react-router-dom";
 
 
 const PlantDetail = () => {
@@ -30,11 +31,12 @@ const PlantDetail = () => {
                     <p>{plantData.scientific_name}</p>
                     <p>{plantData.family_common_name}</p>
                     </Card.Text>
-                    <Link to={`plants/${plantData.common_name}`}> 
-                    <form method="get" action=""> 
-                        <Button type="submit" name="select" variant="success"><Route path={plantData.common_name}/>Add To Shlf</Button>
+                     
+                    <form action="users/id/a" method="post" onSubmit={console.log("Submitted Form")}>
+                        <Button type="submit" name="select" variant="success">Add To Shlf</Button>
                     </form>
-                    </Link>
+
+                    
                 </Card.Body>
                 </Card> 
             </div>

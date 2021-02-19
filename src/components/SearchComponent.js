@@ -1,8 +1,7 @@
 import React from 'react'
 import PageController from '../PageController'
-import Post from '../Post'
 import { Card, Button } from 'react-bootstrap';
-import { Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default class SearchComponent extends React.Component {
 
   
@@ -14,42 +13,6 @@ export default class SearchComponent extends React.Component {
         plant: []
     }
   }
-
-
-  // requestData(formData) {
-  //   return axios({
-  //     method: "post",
-  //     url: "http://localhost:8090/plant",
-  //     data: formData,
-  //     config: {
-  //       headers: {
-  //         Accept: "application/json",
-  //         'Content-Type': "application/json"
-  //       }
-  //     }
-  //   })
-  // }
-
-  //   axios.post(
-  //       "http://localhost:8090/plant",
-  //         {
-  //         "id": plant.id,
-  //         "common_name": plant.common_name,
-  //         "scientific_name": plant.scientific_name,
-  //         "family_common_name": plant.family_common_name,
-  //         "genus_id": plant.genus_id,
-  //         "image_url": plant.image_url,
-  //         "genus": plant.genus,
-  //         "family": plant.family
-  //       }
-  //     )
-  //     .then(response => {
-  //       this.resp = response;
-  //     })
-  //     .catch(e => {
-  //       console.error(e);
-  // })}>
-
 
   handleInputChanged(event) { // on a change event we want to set the state to the value inside the form..the callback keeps it in sync!
       this.setState({ searchQuery: event.target.value }, () => this.componentDidMount())

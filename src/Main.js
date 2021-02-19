@@ -28,7 +28,7 @@ export default class Main extends Component {
         Plant<span style={{color: 'green'}}>Shlf</span></h1>
           <ul className="header">
             <li><NavLink exact to="/">PlantSearch</NavLink></li>
-            <li><NavLink to="/stuff">MyShlf</NavLink></li>
+            <li><NavLink to="users/id/:plant">MyShlf</NavLink></li>
             <li><NavLink to="/contact">Profile</NavLink></li>
           </ul>
           <div className="content">
@@ -36,13 +36,13 @@ export default class Main extends Component {
              <Route path="/stuff" component={Stuff}/>
              <Route path="/contact" component={Contact}/>
              <Route path="/plants/:commonName" component={PlantDetail}/>
-             <Route path="/users/:id/:plant" component={PlantShlf}/>
+             <Route path="/users/id/:plant" component={PlantShlf}/>
           </div>
         </div>
         <footer> 
             <ul className="footer">
              <li><NavLink exact to="/">PlantShelf</NavLink></li>
-             <li><NavLink to="/stuff">MyShlf</NavLink></li>
+             <li><NavLink to="users/id/:plant">MyShlf</NavLink></li>
              <li><NavLink to="/contact">Profile</NavLink></li>
             </ul>
         </footer>
