@@ -29,10 +29,12 @@ export default function PlantShlf() {
                                 <p>{plant.scientific_name}</p>
                                 <p>{plant.family_common_name}</p>
                                 </Card.Text>
-                                <Link to={`plants/${plant.common_name}`}>
-                                    <Button style={{margin: '10px'}} type="submit" name="update" variant="warning">Update Plant</Button>
+                                <Link to={`/users/${123}/update/${plant.common_name}`/* used to be plant.id*/}>
+                                    <form method="get" action="">
+                                        <Button style={{margin: '10px'}} type="submit" name="update" variant="warning">Update Plant</Button>
+                                    </form>
                                 </Link>
-                                <Link to={`/users/${123}/delete/${plant.id}/`}>
+                                <Link to={`/users/${123}/delete/${plant.common_name}/`}>
                                     <form method="get" action="">  
                                         <Button style={{margin: '10px'}} type="submit" name="del" variant="danger">Delete Plant</Button>
                                     </form>

@@ -5,8 +5,6 @@ import axios from 'axios'
 
 const DeletePlant = () => {
 
-
-   
     const {userId, plantId} = useParams( "/users/:userId/delete/:plantId");
     console.log(userId, plantId)
 
@@ -25,7 +23,6 @@ const DeletePlant = () => {
       })
   )
 }
-
 
 
     return (

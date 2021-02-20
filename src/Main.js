@@ -34,8 +34,8 @@ export default class Main extends Component {
              <Route path="/myshlf" component={Stuff}/>
              <Route path="/profile" component={Contact}/>
              <Route path="/plants/:commonName" component={PlantDetail}/>
-             <Route path="/users/:id/update/:plantId" component={UpdatePlant}/>
-             <Route path="/users/:id/delete/:plantId" component={DeletePlant}/>
+             <Route path="/users/:id/update/:commonName" component={UpdatePlant}/>
+             <Route path="/users/:id/delete/:commonName" component={DeletePlant}/>
              <Route exact path="/users/:id" component={PlantShlf}/>
           </div>
         </div>
