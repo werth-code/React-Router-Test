@@ -5,6 +5,8 @@ import axios from 'axios'
 import { useForm } from "react-hook-form";
 
 const UpdatePlant = () => {
+
+    //create a route in backend which used ID to look up plant - using common name is adding confusion.
    
     const getUrl = "http://localhost:8091/search/type/"
     const {commonName} = useParams();
@@ -40,7 +42,7 @@ const UpdatePlant = () => {
 
         const putReqObject  =  {
                                 "id": plantData.id,
-                                "common_name": plantInput.plantName,
+                                "common_name": plantData.common_name,
                                 "scientific_name": plantInput.plantSciName,
                                 "family_common_name": plantInput.plantFamName,
                                 "genus_id": plantData.genus_id,
@@ -64,8 +66,8 @@ const UpdatePlant = () => {
                     <Card.Body>
 
                         <form onSubmit={handleSubmit(onSubmit)} action={`http://localhost:3000/users/${'shlf'}`}>
-                        <label for="plantName">Plant Name</label><br></br>
-                        <input name="plantName" defaultValue={plantData.common_name} ref={register} /><br></br>
+                        {/* <label for="plantName">Plant Name</label><br></br>
+                        <input name="plantName" defaultValue={plantData.common_name} ref={register} /><br></br> */}
                         <label for="plantSciName">Scientific Name</label><br></br>
                         <input name="plantSciName" defaultValue={plantData.scientific_name} ref={register({ required: true, maxLength: 40 })}/><br></br>
                         <label for="plantFamName">Family Name</label><br></br>
