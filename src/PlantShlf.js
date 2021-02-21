@@ -14,7 +14,7 @@ export default function PlantShlf() {
        fetch(`${getUrl}`).then(res => res.json()).then(setPlantData) // now we can actually set the state and access the variable since we have a function.
     }, [plant])
 
-    console.log(plantData)
+
     
     const plantCard = plantData.map(plant => {
 
