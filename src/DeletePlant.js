@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import { Card, Button } from 'react-bootstrap';
-import { useParams } from "react-router-dom";
+import { useParams, Link, useHistory } from "react-router-dom";
 import axios from 'axios'
 
 
@@ -32,12 +32,14 @@ const DeletePlant = () => {
     return (
             <div style={{textAlign: 'center', margin: '10px'}}>
                 <Card style={{border: '1px solid black', width: '25rem', padding: '10px', margin: '0 auto'}}>
-                    <h1>Are You Sure?</h1>
+                    <h5>Are You Sure?</h5>
                 <Card.Body>
 
-                        <form action={`http://localhost:3000/users/${'shlf'}`}>
+                    <Link to={`/shlf`}>
+                        <form>
                             <Button onClick={() => apiCall('DELETE', 'http://localhost:8091/plant/' + plantData.id, {})} type="submit" variant="danger">Verify Delete</Button>
                         </form>
+                    </Link>
 
                 </Card.Body>
                 </Card> 
@@ -45,3 +47,4 @@ const DeletePlant = () => {
     )
 }
 export default DeletePlant;
+

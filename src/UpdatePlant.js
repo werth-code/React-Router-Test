@@ -1,21 +1,20 @@
 import {useEffect, useState} from 'react'
 import { Card, Button, Form } from 'react-bootstrap';
-import { useParams } from "react-router-dom";
+import { useParams, Link, useHistory} from "react-router-dom";
 import axios from 'axios'
 import { useForm } from "react-hook-form";
 
-const UpdatePlant = () => {
 
-    //create a route in backend which used ID to look up plant - using common name is adding confusion.
+const UpdatePlant = () => {
    
     const getUrl = "http://localhost:8091/search/type/"
     const {commonName} = useParams();
     
-    const [plantData, setPlantData] = useState([]) // useState allows us to set this data with some property using the function - second value in [a, setPlantData ]
-
+    const [plantData, setPlantData] = useState([]) 
+    const history = useHistory({forceRefresh:true})
 
     useEffect(() => {
-       fetch(`${getUrl}${commonName}`).then(res => res.json()).then(setPlantData) // now we can actually set the state and access the variable since we have a function.
+       fetch(`${getUrl}${commonName}`).then(res => res.json()).then(setPlantData) 
     }, [])
 
 
@@ -33,12 +32,9 @@ const UpdatePlant = () => {
             else reject(err)}))
     }
 
-
-
     const { register, handleSubmit, watch, errors } = useForm();
     
     const onSubmit = plantInput => { 
-        console.log(plantInput)
 
         const putReqObject  =  {
                                 "id": plantData.id,
@@ -51,9 +47,11 @@ const UpdatePlant = () => {
                                 "family": plantData.family
                             }
 
-        console.log(putReqObject)
 
         apiCall('PUT', 'http://localhost:8091/plant/' + plantData.id, putReqObject)
+
+        history.push('/shlf')
+
     }
 
 
@@ -65,16 +63,18 @@ const UpdatePlant = () => {
                     <Card.Img variant="top" src={plantData.image_url} style={{ margin: '0 auto', width: '250px' }}/>
                     <Card.Body>
 
-                        <form onSubmit={handleSubmit(onSubmit)} action={`http://localhost:3000/users/${'shlf'}`}>
-                        {/* <label for="plantName">Plant Name</label><br></br>
-                        <input name="plantName" defaultValue={plantData.common_name} ref={register} /><br></br> */}
+                    
+                        <form onSubmit={handleSubmit(onSubmit)}>
+
                         <label for="plantSciName">Scientific Name</label><br></br>
                         <input name="plantSciName" defaultValue={plantData.scientific_name} ref={register({ required: true, maxLength: 40 })}/><br></br>
                         <label for="plantFamName">Family Name</label><br></br>
                         <input name="plantFamName" defaultValue={plantData.family_common_name} ref={register({ required: true, maxLength: 40 })}/><br></br><br></br>
                         
                         {errors.exampleRequired && <p>This field is required</p>}
-                        <input type="submit" />
+                        
+                            <Button type="submit" variant="warning">Update</Button>
+                       
                         </form>
 
                     </Card.Body>
@@ -85,8 +85,3 @@ const UpdatePlant = () => {
 
 
 export default UpdatePlant;
-
-
-        /* <form action={`http://localhost:3000/users/${'shlf'}`} onSubmit={console.log(`Updated Plant ${plantData.common_name}`)}>
-             <Button onClick={apiCall('PUT', 'http://localhost:8091/plant/' + plantData.id, initialFormData)} type="submit" variant="warning">Update</Button>
-           </form> */

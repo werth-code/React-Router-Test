@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
 import { Card, Button } from 'react-bootstrap';
-import { useParams, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
 export default function PlantShlf() {
 
     const getUrl = "http://localhost:8091/plant"
-    const {plant} = useParams();
 
     const [plantData, setPlantData] = useState([]) // useState allows us to set this data with some property using the function - second value in [a, setPlantData ]
 
     useEffect(() => {
        fetch(`${getUrl}`).then(res => res.json()).then(setPlantData) // now we can actually set the state and access the variable since we have a function.
-    }, [plant])
+    })
 
 
     
@@ -26,15 +25,15 @@ export default function PlantShlf() {
                             <Card.Body>
                                 <Card.Title style={{ fontWeight: 'bold' }}>{plant.common_name}</Card.Title>
                                 <Card.Text>
-                                <p>{plant.scientific_name}</p>
-                                <p>{plant.family_common_name}</p>
+                                <p style={{ fontSize: '16px' }}>{plant.scientific_name}</p>
+                                <p style={{ fontSize: '16px' }}>{plant.family_common_name}</p>
                                 </Card.Text>
-                                <Link to={`/users/${123}/update/${plant.common_name}`/* used to be plant.id*/}>
+                                <Link to={`/update/${plant.common_name}`/* used to be plant.id*/}>
                                     <form method="get" action="">
                                         <Button style={{margin: '10px'}} type="submit" name="update" variant="warning">Update Plant</Button>
                                     </form>
                                 </Link>
-                                <Link to={`/users/${123}/delete/${plant.common_name}/`}>
+                                <Link to={`/delete/${plant.common_name}/`}>
                                     <form method="get" action="">  
                                         <Button style={{margin: '10px'}} type="submit" name="del" variant="danger">Delete Plant</Button>
                                     </form>
