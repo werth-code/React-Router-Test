@@ -22,7 +22,7 @@ export default class Main extends Component {
 
           <ul className="header">
             <li><NavLink exact to="/">PlantSearch</NavLink></li>
-            <li><NavLink exact to="shlf">MyShlf</NavLink></li>
+            <li><NavLink exact to="/shlf">MyShlf</NavLink></li>
             <li><NavLink exact to="/profile">Profile</NavLink></li>
           </ul>
           <div className="content">

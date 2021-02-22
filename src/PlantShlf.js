@@ -12,8 +12,6 @@ export default function PlantShlf() {
     useEffect(() => {
        fetch(`${getUrl}`).then(res => res.json()).then(setPlantData) // now we can actually set the state and access the variable since we have a function.
     })
-
-
     
     const plantCard = plantData.map(plant => {
 
