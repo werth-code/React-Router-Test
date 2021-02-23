@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
-import { Card, Button, Form } from 'react-bootstrap';
-import { useParams, Link, useHistory} from "react-router-dom";
+import { Card, Button } from 'react-bootstrap';
+import { useParams, useHistory} from "react-router-dom";
 import axios from 'axios'
 import { useForm } from "react-hook-form";
 
@@ -13,10 +13,7 @@ const UpdatePlant = () => {
     const [plantData, setPlantData] = useState([]) 
     const history = useHistory({forceRefresh:true})
 
-    useEffect(() => {
-       fetch(`${getUrl}${commonName}`).then(res => res.json()).then(setPlantData) 
-    }, [])
-
+    useEffect(() => fetch(`${getUrl}${commonName}`).then(res => res.json()).then(setPlantData), [])
 
     function apiCall(method, url, data) {
         return new Promise((resolve, reject) =>
@@ -48,9 +45,7 @@ const UpdatePlant = () => {
                             }
 
 
-        apiCall('PUT', 'http://localhost:8091/plant/' + plantData.id, putReqObject)
-
-        history.push('/shlf')
+        apiCall('PUT', 'http://localhost:8091/plant/' + plantData.id, putReqObject).then( res => history.push('/shlf'))
 
     }
 
@@ -73,8 +68,7 @@ const UpdatePlant = () => {
                         
                         {errors.exampleRequired && <p>This field is required</p>}
                         
-                            <Button type="submit" variant="warning">Update</Button>
-                       
+                        <Button type="submit" variant="warning">Update</Button>
                         </form>
 
                     </Card.Body>

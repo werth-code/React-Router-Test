@@ -11,10 +11,9 @@ const DeletePlant = () => {
 
     const [plantData, setPlantData] = useState([]) // useState allows us to set this data with some property using the function - second value in [a, setPlantData ]
 
-    useEffect(() => {
-       fetch(`${getUrl}${commonName}`).then(res => res.json()).then(setPlantData) // now we can actually set the state and access the variable since we have a function.
-    })
+    useEffect(() => fetch(`${getUrl}${commonName}`).then(res => res.json()).then(setPlantData), [])
 
+    const history = useHistory({forceRefresh:true})
 
     function apiCall(method, url, data) {
         return new Promise((resolve, reject) =>
@@ -37,7 +36,7 @@ const DeletePlant = () => {
 
                     <Link to={`/shlf`}>
                         <form>
-                            <Button onClick={() => apiCall('DELETE', 'http://localhost:8091/plant/' + plantData.id, {})} type="submit" variant="danger">Verify Delete</Button>
+                            <Button onClick={() => apiCall('DELETE', 'http://localhost:8091/plant/' + plantData.id, {}).then( () => history.push('/shlf'))} type="submit" variant="danger">Verify Delete</Button>
                         </form>
                     </Link>
 

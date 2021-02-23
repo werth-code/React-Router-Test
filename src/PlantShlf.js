@@ -9,10 +9,10 @@ export default function PlantShlf() {
 
     const [plantData, setPlantData] = useState([]) // useState allows us to set this data with some property using the function - second value in [a, setPlantData ]
 
-    useEffect(() => {
-       fetch(`${getUrl}`).then(res => res.json()).then(setPlantData) // now we can actually set the state and access the variable since we have a function.
-    })
+    useEffect( () => fetch(`${getUrl}`).then(res => res.json()).then(setPlantData),[plantData.prop])
     
+    console.log(plantData)
+
     const plantCard = plantData.map(plant => {
 
         if(plant.image_url === null) plant.image_url ="https://www.gardeningknowhow.com/wp-content/uploads/2013/12/leaf-curl.jpg"
