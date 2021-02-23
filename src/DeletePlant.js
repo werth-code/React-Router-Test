@@ -28,7 +28,7 @@ const DeletePlant = () => {
         )
     }   
 
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { handleSubmit, errors } = useForm();
     
     const onSubmit = plantInput => { 
         apiCall('DELETE', 'http://localhost:8091/plant/' + plantData.id, {}).then( () => history.push('/shlf'))
@@ -40,12 +40,6 @@ const DeletePlant = () => {
                 <Card style={{border: '1px solid black', width: '25rem', padding: '10px', margin: '0 auto'}}>
                     <h5>Are You Sure?</h5>
                 <Card.Body>
-
-                    {/* <Link to={`/shlf`}>
-                        <form>
-                            <Button onClick={() => apiCall('DELETE', 'http://localhost:8091/plant/' + plantData.id, {}).then( () => history.push('/shlf'))} type="submit" variant="danger">Verify Delete</Button>
-                        </form>
-                    </Link> */}
 
                     <form onSubmit={handleSubmit(onSubmit)}>
                         
