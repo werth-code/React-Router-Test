@@ -2,6 +2,7 @@ import {useEffect, useState} from 'react'
 import { Card, Button } from 'react-bootstrap';
 import { useParams, Link, useHistory } from "react-router-dom";
 import axios from 'axios'
+import { useForm } from "react-hook-form";
 
 
 const DeletePlant = () => {
@@ -27,6 +28,12 @@ const DeletePlant = () => {
         )
     }   
 
+    const { register, handleSubmit, watch, errors } = useForm();
+    
+    const onSubmit = plantInput => { 
+        apiCall('DELETE', 'http://localhost:8091/plant/' + plantData.id, {}).then( () => history.push('/shlf'))
+    }
+
 
     return (
             <div style={{textAlign: 'center', margin: '10px'}}>
@@ -34,11 +41,18 @@ const DeletePlant = () => {
                     <h5>Are You Sure?</h5>
                 <Card.Body>
 
-                    <Link to={`/shlf`}>
+                    {/* <Link to={`/shlf`}>
                         <form>
                             <Button onClick={() => apiCall('DELETE', 'http://localhost:8091/plant/' + plantData.id, {}).then( () => history.push('/shlf'))} type="submit" variant="danger">Verify Delete</Button>
                         </form>
-                    </Link>
+                    </Link> */}
+
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        
+                        {errors.exampleRequired && <p>This field is required</p>}
+                        
+                        <Button type="submit" variant="danger">Delete</Button>
+                    </form>
 
                 </Card.Body>
                 </Card> 
@@ -47,3 +61,4 @@ const DeletePlant = () => {
 }
 export default DeletePlant;
 
+                        
